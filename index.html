@@ -6,21 +6,38 @@
 -->
 <html>
 	<head>
-		<title>Massively by HTML5 UP</title>
+		<title>Daniele Petracca - Portfolio</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+		<script>
+		VANTA.NET({
+ 		 	el: "#net",
+  		 	mouseControls: true,
+  			touchControls: true,
+  			gyroControls: false,
+  			minHeight: 200.00,
+  			minWidth: 200.00,
+  			scale: 1.00,
+  			scaleMobile: 1.00
+			})
+		</script>
+	
 	</head>
 	<body class="is-preload">
 
-		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
+		<!-- Wrapper div id="wrapper" class="fade-in"-->
+			<div id="net" >
 
 				<!-- Intro -->
 					<div id="intro">
 						<h1>Daniele Petracca</h1>
-						<p>Game Developer experienced Unity, Unreal Engine, MS Dynamics, .Net <br />
+						<p>Game Developer, Data Scientist, Web and mobile developer <br />
 						</p>
 						<ul class="actions">
 							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
@@ -29,21 +46,22 @@
 
 				<!-- Header -->
 					<header id="header">
-						<a href="index.html" class="logo">Play</a>
+						<a href="index.html" class="logo">Home</a>
 					</header>
 
 				<!-- Nav -->
 					<nav id="nav">
 						<ul class="links">
-							<li class="active"><a href="index.html">Home</a></li>
-							<li><a href="generic.html">Projects</a></li>
-							<li><a href="elements.html">Resume</a></li>
+							<li class="active"><a href="index.html">Projects</a></li>
+							<li><a href="generic.html">About Me</a></li>
+							<li><a href="elements.html">Previous Jobs</a></li>
 						</ul>
 						<ul class="icons">
-							<li><a href="https://www.linkedin.com/in/daniele-petracca-58684a165/" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="https://www.linkedin.com/in/daniele-petracca-58684a165/" > <span class="fa-stack fa-xl"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-linkedin fa-stack-1x"></i></span></a></li>
 							<li><a href="https://www.facebook.com/daniele.petracca.9/" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
 							<li><a href="https://www.instagram.com/daniele.petracca/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 							<li><a href="https://github.com/danipetra" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+							<li><a href="https://open.spotify.com/user/ssmgujjptxdcsvoid540oppzv?si=13b52cf23f9249ad" class="icon brands fa-spotify"><span class="label">Spotify</span></a></li>
 						</ul>
 					</nav>
 
@@ -53,16 +71,17 @@
 						<!-- Featured Post -->
 							<article class="post featured">
 								<header class="major">
-									<span class="date">September 31, 2021</span>
+									<span class="date">October 31, 2022</span>
 									<h2><a href="#">Hi, I'm<br />
 												Daniele Petracca</a></h2>
-									<p>Passionate .Net and Game Developer with more than 2 years of<br />
-									experience with C#, C++, C, Javascript and Java Programming Languages<br />
-									More than  two years of experience with Unity and Unreal Engine</p>
+									<p>I'm very creative, intuitive and curious, so I've found in programming and music the perfect tools for expressing myself.<br> 
+										In 2022 i graduated in computer science. From 2020 to 2021 i worked as a Data analyst in Azeltech.<br>
+										The programming languages I like to use the most are C#, Javascript and Python.<br> 
+										In my free time I'm a Game developer, mainly in Unity.</p>
 								</header>
-								<a href="#" class="image main"><img src="images/pic01.jpg" alt="" /></a>
+								<a href="#" class="image main"><img src="images/DSC_0078.JPG" alt="" /></a>
 								<ul class="actions special">
-									<li><a href="#" class="button large">Full Story</a></li>
+									<li><a href="generic.html" class="button large">Full Story</a></li>
 								</ul>
 							</article>
 
@@ -70,88 +89,91 @@
 							<section class="posts">
 								<article>
 									<header>
-										<span class="date">October 26, 2021</span>
-										<h2><a href="#">Gravity Swap<br />
+										<span class="date">October 27, 2022</span>
+										<h2><a >VR Graph Viewer<br />
 										</a></h2>
 										<h5>Unity</h5>
 									</header>
-									<a href="#" class="image fit"><img src="images/GravitySwap.png" alt="" /></a>
-									<p>	2D Endless Runner Made through Unity and released on the Play Store. Among the game systems implemented there are:<br>
-										-Advertising via UnityAds <br>
-										-Save System using JSONs<br>
-										-Object pooling<br>
-										-PlayerPrefs settings and management<br>
-										-Skin customization system<br>
+									<a >
+										<video  class="image fit"  controls>
+											<source src="videos/VRVis.mp4" type="video/mp4">
+										</video>
+									</a>
+									<p>	For my thesis work, I combined my passion for Unity and game development with my experience in data analysis and visualization: 
+										I created a VR visualization app for showing network anomalies using force-directed graphs, with high emphasis on interaction and anomaly detection. 
+										To recover network traffic data records before the rendering, I developed  a Python Restful API, using pandas and flask.
+										The main feautes this work offers are:
+										<br>
+										- Player free movement and camera control.<br>
+										- High interaction with nodes.<br>
+										- Anomaly detection, using the MIDAS library. <br>
+										- Community detection, using the Comuna library. <br>
+										- Graph controls (as rotation or resizing).<br>
+										- High performance on small-medium sized graphs.<br>
+									</p>
+									<!--<ul class="actions special">
+										<li><a href="" class="button">Watch Full Video</a></li>
+									</ul>-->
+								</article>
+
+								<article>
+									<header>
+										<span class="date">June 10, 2022</span>
+										<h2><a >2D Graph Viewer<br />
+										</a></h2>
+										<h5>G6 Visualization Engine</h5>
+									</header>
+									<a  class="image fit">
+										<video  class="image fit"  controls>
+											<source src="videos/2DVis.mp4" type="video/mp4">
+										</video>
+									</a>
+									<p>	In collaboration with Dromic, I made a 2D visualization web application to show anomalies of network traffic, using G6, a Javascript visualization engine. To recover network traffic data records before the rendering, I developed a Python Restful API, using pandas and flask. For the anomaly detection activity I used MIDAS, a C++ library.
+									</p>
+									<!--<ul class="actions special">
+										<li><a href="" class="button">Play Demo</a></li>
+									</ul>-->
+								</article>
+
+								<article>
+									<header>
+										<span class="date">October 26, 2021</span>
+										<h2><a href="https://play.google.com/store/apps/details?id=com.PersistentGameStudios.GravitySwap">Gravity Swap<br />
+										</a></h2>
+										<h5>Unity</h5>
+									</header>
+									<a href="https://play.google.com/store/apps/details?id=com.PersistentGameStudios.GravitySwap" class="image fit"><img src="images/GravitySwap.png" alt="" /></a>
+									<p>	2D Endless Runner Game, made with Unity and the C# programming language; released on the Play Store. Among the game systems developed there are:<br>
+										- Advertising via UnityAds. <br>
+										- Save System using JSONs.<br>
+										- Object pooling.<br>
+										- PlayerPrefs settings and management.<br>
+										- Skin customization system.<br>
 									</p>
 									<ul class="actions special">
 										<li><a href="https://play.google.com/store/apps/details?id=com.PersistentGameStudios.GravitySwap" class="button">Play Store Page</a></li>
 									</ul>
 								</article>
-								<article>
-									<header>
-										<span class="date">April 22, 2017</span>
-										<h2><a href="#">Toon Tanks<br />
-										</a></h2>
-										<h5>Unreal Engine</h5>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">See On Repository</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">April 18, 2017</span>
-										<h2><a href="#">Escape Room<br />
-										</a></h2>
-										<h5>Unreal Engine</h5>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">April 14, 2017</span>
-										<h2><a href="#">Text-101<br />
-										</a></h2>
-										<h5>Unity</h5>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul>
-								</article>
+
 								<article>
 									<header>
 										<span class="date">April 11, 2017</span>
-										<h2><a href="#">Flappy Bird IA<br />
+										<h2><a >Flappy Bird IA<br />
 										</a></h2>
 										<h5>Javascript, Neural Network, Genetic Algorithm</h5>
 									</header>
-									<a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
+									<a class="image fit">
+										<video  class="image fit" controls>
+											<source src="videos/FlappyBirdIA.mp4" type="video/mp4">
+										</video>
+									</a>
+									<p> I made an AI that plays a flappy bird clone game, using Javascript and the D3 library. The AI combines agents using neural networks, with a genetic algrithm that creates better agents based on the best ones of each previous iteration.</p>
+									<!--<ul class="actions special">
 										<li><a href="#" class="button">Full Story</a></li>
-									</ul>
+									</ul>-->
 								</article>
-								<article>
-									<header>
-										<span class="date">April 7, 2017</span>
-										<h2><a href="#">XOR Neural Network<br />
-										</a></h2>
-										<h5>Unity</h5>
-									</header>
-									<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Full Story</a></li>
-									</ul>
-								</article>
+
+								
 							</section>
 
 						<!-- Footer -->
@@ -213,10 +235,11 @@
 							<section>
 								<h3>Social</h3>
 								<ul class="icons alt">
-									<li><a href="https://www.linkedin.com/in/daniele-petracca-58684a165/" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="https://www.instagram.com/daniele.petracca/"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="https://github.com/danipetra"><span class="label">GitHub</span></a></li>
-								</ul>
+									<li><a href="https://www.linkedin.com/in/daniele-petracca-58684a165/" > <span class="fa-stack fa-xl"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-linkedin fa-stack-1x"></i></span></a></li>
+									<li><a href="https://www.facebook.com/daniele.petracca.9/" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="https://www.instagram.com/daniele.petracca/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="https://github.com/danipetra" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="https://open.spotify.com/user/ssmgujjptxdcsvoid540oppzv?si=13b52cf23f9249ad" class="icon brands fa-spotify"><span class="label">Spotify</span></a></li>
 							</section>
 						</section>
 					</footer>
