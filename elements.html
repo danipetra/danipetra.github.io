@@ -17,12 +17,31 @@
 
 		<!-- Wrapper -->
 			<div id="wrapper">
-
-				<!-- Header -->
+				<div id="vanta-canvas">
+					<!-- Header -->
 					<header id="header">
-						<a href="index.html" class="logo">Home</a>
-					</header>
+					<a href="index.html" class="logo">Home</a>
+					
+				</header>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+				<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
 
+				<script type="text/javascript">
+					VANTA.NET ({
+						el: "#vanta-canvas",
+						mouseControls: true,
+						touchControls: true,
+						gyroControls: true,
+						minHeight: 200.00,
+						minWidth: 200.00,
+						scale: 1.00,
+						scaleMobile: 1.00,
+						color: 0x3f8eff,
+						backgroundColor: 0x1e252d
+					})
+				</script>
+				
+				</div>
 				<!-- Nav -->
 					<nav id="nav">
 						<ul class="links">
@@ -115,7 +134,7 @@
 
 				<!-- Copyright -->
 					<div id="copyright">
-						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+						<ul><li>&copy; Daniele Petracca</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
 					</div>
 
 			</div>

@@ -119,12 +119,6 @@ input, select, textarea {
 			-ms-transition: none !important;
 			transition: none !important;
 		}
-#net{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: 1;
-}
 
 /* Type */
 

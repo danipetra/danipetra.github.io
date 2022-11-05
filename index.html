@@ -7,34 +7,21 @@
 <html>
 	<head>
 		<title>Daniele Petracca - Portfolio</title>
+			
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
-		<script>
-		VANTA.NET({
- 		 	el: "#net",
-  		 	mouseControls: true,
-  			touchControls: true,
-  			gyroControls: false,
-  			minHeight: 200.00,
-  			minWidth: 200.00,
-  			scale: 1.00,
-  			scaleMobile: 1.00
-			})
-		</script>
 	
 	</head>
 	<body class="is-preload">
 
 		<!-- Wrapper div id="wrapper" class="fade-in"-->
-			<div id="net" >
+			<div id="content">
+				<div id="vanta-canvas">
 
-				<!-- Intro -->
+					<!-- Intro -->
 					<div id="intro">
 						<h1>Daniele Petracca</h1>
 						<p>Game Developer, Data Scientist, Web and mobile developer <br />
@@ -44,10 +31,31 @@
 						</ul>
 					</div>
 
-				<!-- Header -->
+					<!-- Header -->
 					<header id="header">
 						<a href="index.html" class="logo">Home</a>
 					</header>
+
+
+
+				</div>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+				<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+
+				<script type="text/javascript">
+					VANTA.NET ({
+						el: "#vanta-canvas",
+						mouseControls: true,
+						touchControls: true,
+						gyroControls: true,
+						minHeight: 200.00,
+						minWidth: 200.00,
+						scale: 1.00,
+						scaleMobile: 1.00,
+						color: 0x3f8eff,
+						backgroundColor: 0x1e252d <!--Color to use: 1d1b1d-->
+					})
+				</script>
 
 				<!-- Nav -->
 					<nav id="nav">
@@ -75,7 +83,7 @@
 									<h2><a href="#">Hi, I'm<br />
 												Daniele Petracca</a></h2>
 									<p>I'm very creative, intuitive and curious, so I've found in programming and music the perfect tools for expressing myself.<br> 
-										In 2022 i graduated in computer science. From 2020 to 2021 i worked as a Data analyst in Azeltech.<br>
+										In 2022 I graduated in computer science. From 2020 to 2021 I worked as a Data analyst in Azeltech.<br>
 										The programming languages I like to use the most are C#, Javascript and Python.<br> 
 										In my free time I'm a Game developer, mainly in Unity.</p>
 								</header>
@@ -245,12 +253,12 @@
 					</footer>
 
 				<!-- Copyright -->
-					<div id="copyright">
-						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
-					</div>
+					
 
 			</div>
-
+			<div id="copyright">
+				<ul><li>&copy; Daniele Petracca</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+			</div>
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
