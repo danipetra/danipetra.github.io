@@ -1,0 +1,5 @@
+FFpeg commands:
+
+ADD Watermark:
+ffmpeg -i input.mp4 -filter_complex "drawtext=fontfile='C\:\\Windows\\Fonts\\Arial.ttf':text='':fontcolor=white@0.5:font
+size=60:box=1:boxcolor=black@0.5:boxborderw=5:x=(w-text_w)/2:y=(h-text_h)/2" -c:a copy output.mp4
