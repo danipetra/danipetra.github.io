@@ -49,36 +49,51 @@ const AppShowcase = () => {
         <div className="showcaselayout">
           <div ref={rydeRef} className="first-project-wrapper">
             <div className="image-wrapper">
-              <img src="/images/project1.png" alt="Ryde App Interface" />
+              <img src="/images/gravity-swap.png" alt="Ryde App Interface" />
             </div>
             <div className="text-content">
               <h2>
-                On-Demand Rides Made Simple with a Powerful, User-Friendly App
-                called Ryde
+                Gravity Swap
               </h2>
               <p className="text-white-50 md:text-xl">
-                An app built with React Native, Expo, & TailwindCSS for a fast,
-                user-friendly experience.
+                Designed, developed and published a 2D mobile game using Unity and C#, featuring dynamic gravity mechanics and procedural generation.
+                Integrated Google Ads SDK for monetization and released on Android.
+                Focused on gameplay balance, UX, and lightweight performance optimization.
               </p>
             </div>
           </div>
 
           <div className="project-list-wrapper overflow-hidden">
             <div className="project" ref={libraryRef}>
-              <div className="image-wrapper bg-[#FFEFDB]">
+              <div className="image-wrapper">
                 <img
-                  src="/images/project2.png"
+                  src="/images/vr-vis.png"
                   alt="Library Management Platform"
                 />
               </div>
-              <h2>The Library Management Platform</h2>
+              <h2>VRVis</h2>
+              <p className="text-white-50 md:text-xl">
+                For my thesis project, I combined my passion for Unity and game development with my background in data analysis and visualization. I built a VR application that visualizes network anomalies through force-directed graphs, focusing on interaction and anomaly detection.
+                A custom Python RESTful API (Flask + pandas) handles the preprocessing and retrieval of network traffic data.
+                  Main features:
+                  Free player movement and camera control;
+                  Interactive graph nodes;
+                  Anomaly detection using MIDAS;
+                  Community detection using Comuna;
+                  Graph controls (rotation, resizing, etc.);
+              </p>
             </div>
 
             <div className="project" ref={ycDirectoryRef}>
-              <div className="image-wrapper bg-[#FFE7EB]">
-                <img src="/images/project3.png" alt="YC Directory App" />
+              <div className="image-wrapper">
+                <img src="/images/pint-toss.png" alt="YC Directory App" />
               </div>
-              <h2>YC Directory - A Startup Showcase App</h2>
+              <h2>Pint Toss</h2>
+              <p className="text-white-50 md:text-xl">
+                I Realized a 3D arcade game in a 2 weeks game challenge. The game is builded for both mobile and PC. The new subjects I explored during this work were:
+                  Platform independent controls, using the new Unity Input System;
+                  3D line rendering and game objects trajectory prediction;
+              </p>
             </div>
           </div>
         </div>

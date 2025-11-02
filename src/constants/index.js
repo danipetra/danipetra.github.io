@@ -138,7 +138,7 @@ const techStackIcons = [
     rotation: [0, 0, 0],
   },
   {
-    name: "Project Manager",
+    name: "Git and Gitlab",
     modelPath: "/models/git-svg-transformed.glb",
     scale: 0.05,
     rotation: [0, -Math.PI / 4, 0],
@@ -250,18 +250,21 @@ const socialImgs = [
   {
     name: "insta",
     imgPath: "/images/insta.png",
+    link: "https://www.instagram.com/daniele.petracca/",
   },
   {
     name: "fb",
     imgPath: "/images/fb.png",
+    link: "https://www.facebook.com/daniele.petracca.9/",
   },
-  {
-    name: "x",
-    imgPath: "/images/x.png",
-  },
+  // TODO - Add spotify {
+  //   name: "x",
+  //   imgPath: "/images/x.png",
+  // },
   {
     name: "linkedin",
     imgPath: "/images/linkedin.png",
+    link: "https://www.linkedin.com/in/daniele-petracca-58684a165",
   },
 ];
 
