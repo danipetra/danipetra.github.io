@@ -74,18 +74,18 @@ const logoIconsList = [
 const abilities = [
   {
     imgPath: "/images/seo.png",
-    title: "Quality Focus",
-    desc: "Delivering high-quality results while maintaining attention to every detail.",
+    title: "Creative Problem-Solving",
+    desc: "Turning complex technical challenges into elegant, interactive experiences through smart architecture and clean code.",
   },
   {
     imgPath: "/images/chat.png",
-    title: "Reliable Communication",
-    desc: "Keeping you updated at every step to ensure transparency and clarity.",
+    title: "Collaborative Spirit",
+    desc: "Working side-by-side with designers, artists, and backend devs to build something that feels alive and consistent.",
   },
   {
     imgPath: "/images/time.png",
-    title: "On-Time Delivery",
-    desc: "Making sure projects are completed on schedule, with quality & attention to detail.",
+    title: "Performance & Precision",
+    desc: "Every pixel and frame counts — I focus on optimizing rendering, animation flow, and responsiveness across devices.",
   },
 ];
 
@@ -114,6 +114,12 @@ const techStackImgs = [
 
 const techStackIcons = [
   {
+    name: "Javascript Developer",
+    modelPath: "/models/node-transformed.glb",
+    scale: 5,
+    rotation: [0, -Math.PI / 2, 0],
+  },
+  {
     name: "React Developer",
     modelPath: "/models/react_logo-transformed.glb",
     scale: 1,
@@ -124,12 +130,6 @@ const techStackIcons = [
     modelPath: "/models/python-transformed.glb",
     scale: 0.8,
     rotation: [0, 0, 0],
-  },
-  {
-    name: "Backend Developer",
-    modelPath: "/models/node-transformed.glb",
-    scale: 5,
-    rotation: [0, -Math.PI / 2, 0],
   },
   {
     name: "Interactive Developer",
@@ -150,35 +150,37 @@ const expCards = [
     review: "Adrian brought creativity and technical expertise to the team, significantly improving our frontend performance. His work has been invaluable in delivering faster experiences.",
     imgPath: "/images/exp1.png",
     logoPath: "/images/logo1.png",
-    title: "Frontend Developer",
-    date: "January 2023 - Present",
+    title: "Frontend Engineer",
+    date: "January 2025 - Present",
     responsibilities: [
-      "Developed and maintained user-facing features for the Hostinger website.",
-      "Collaborated closely with UI/UX designers to ensure seamless user experiences.",
-      "Optimized web applications for maximum speed and scalability.",
+      "Developed and maintained responsive websites and web apps using JavaScript, Laravel, and PHP.",
+      "Integrated and configured third-party tools such as Google Analytics, Iubenda, reCAPTCHA, and Bootstrap to enhance functionality and compliance.",
+      "Worked closely with designers to ensure pixel-perfect UI implementation and high-quality user experiences across devices.",
+      "Improved website performance and accessibility following modern SEO and UX best practices."
     ],
   },
   {
     review: "Adrian’s contributions to Docker's web applications have been outstanding. He approaches challenges with a problem-solving mindset.",
     imgPath: "/images/exp2.png",
     logoPath: "/images/logo2.png",
-    title: "Full Stack Developer",
-    date: "June 2020 - December 2023",
+    title: "Frontend Game Developer",
+    date: "May 2023 - December 2024",
     responsibilities: [
-      "Led the development of Docker's web applications, focusing on scalability.",
-      "Worked with backend engineers to integrate APIs seamlessly with the frontend.",
-      "Contributed to open-source projects that were used with the Docker ecosystem.",
+      "Worked on the development and optimization of online slot games built with Javascript and PixiJS for desktop and mobile platforms.",
+      "Worked on MySlots, a customizable slot game built with React and PixiJS, allowing full customization of reels, gameplay, and visuals through an intuitive UI.",
+      "Collaborated with game designers, artists, and backend developers to implement gameplay logic, UI/UX animations, audio and smooth visual effects using Howler, Pixi-Spine, Gimp and custom shaders.",
+      "Collaboration within an international team using Agile/Scrum methodology (Jira, Confluence, Git).",
     ],
   },
   {
     review: "Adrian’s work on Appwrite’s mobile app brought a high level of quality and efficiency. He delivered solutions that enhanced our mobile experience & meet our product goals.",
     imgPath: "/images/exp3.png",
     logoPath: "/images/logo3.png",
-    title: "React Native Developer",
-    date: "March 2019 - May 2020",
+    title: "Frontend Developer",
+    date: "November 2022 - May 2023",
     responsibilities: [
-      "Built cross-platform mobile apps using React Native, integrating with Appwrite's backend services.",
-      "Improved app performance and user experience through code optimization and testing.",
+      "Developed and maintained video-related product features using Python, Flask, C, and FFmpeg, focusing on performance and video processing automation.",
+      "Designed and implemented an interactive 2D data visualization web app built with Angular, G6 Engine, and JavaScript, enabling real-time exploration of complex datasets.",
       "Coordinated with the product team to implement features based on feedback.",
     ],
   },
