@@ -91,23 +91,35 @@ const abilities = [
 
 const techStackImgs = [
   {
-    name: "React Developer",
+    name: "Javascript Developer",
+    imgPath: "/images/logos/node.png",
+  },
+  {
+    name: "React",
     imgPath: "/images/logos/react.png",
   },
   {
-    name: "Python Developer",
-    imgPath: "/images/logos/python.svg",
+    name: "Vue",
+    imgPath: "/images/logos/vuejs.png",
   },
   {
-    name: "Backend Developer",
-    imgPath: "/images/logos/node.png",
+    name: "Pixi.js Developer",
+    imgPath: "/images/logos/pixijs.png",
   },
   {
     name: "Interactive Developer",
     imgPath: "/images/logos/three.png",
   },
   {
-    name: "Project Manager",
+    name: "Unity & C#",
+    imgPath: "/images/logos/unity.png",
+  },
+  {
+    name: "Unreal Engine & C++",
+    imgPath: "/images/logos/unrealengine.png",
+  },
+  {
+    name: "Git & GitHub",
     imgPath: "/images/logos/git.svg",
   },
 ];
@@ -248,6 +260,16 @@ const testimonials = [
 
 const socialImgs = [
   {
+    name: "linkedin",
+    imgPath: "/images/linkedin.png",
+    link: "https://www.linkedin.com/in/daniele-petracca-58684a165",
+  },
+  {
+    name: "git",
+    imgPath: "/images/git.png",
+    link: "https://github.com/danipetra"
+  },
+  {
     name: "insta",
     imgPath: "/images/insta.png",
     link: "https://www.instagram.com/daniele.petracca/",
@@ -257,14 +279,10 @@ const socialImgs = [
     imgPath: "/images/fb.png",
     link: "https://www.facebook.com/daniele.petracca.9/",
   },
-  // TODO - Add spotify {
-  //   name: "x",
-  //   imgPath: "/images/x.png",
-  // },
   {
-    name: "linkedin",
-    imgPath: "/images/linkedin.png",
-    link: "https://www.linkedin.com/in/daniele-petracca-58684a165",
+    name: "spotify",
+    imgPath: "/images/spotify.png",
+    link: "https://open.spotify.com/user/ssmgujjptxdcsvoid540oppzv?si=ccd533e77c164277"
   },
 ];
 
