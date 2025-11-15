@@ -91,7 +91,7 @@ const abilities = [
 
 const techStackImgs = [
   {
-    name: "Javascript Developer",
+    name: "Javascript & Typescript Developer",
     imgPath: "/images/logos/node.png",
   },
   {
@@ -103,11 +103,11 @@ const techStackImgs = [
     imgPath: "/images/logos/vuejs.png",
   },
   {
-    name: "Pixi.js Developer",
+    name: "Pixi.js",
     imgPath: "/images/logos/pixijs.png",
   },
   {
-    name: "Interactive Developer",
+    name: "Three.js & Interaction",
     imgPath: "/images/logos/three.png",
   },
   {
@@ -117,6 +117,10 @@ const techStackImgs = [
   {
     name: "Unreal Engine & C++",
     imgPath: "/images/logos/unrealengine.png",
+  },
+  {
+    name: "Laravel & PHP",
+    imgPath: "/images/logos/laravel.png",
   },
   {
     name: "Git & GitHub",
