@@ -32,7 +32,7 @@ const counterItems = [
   { value: 4, suffix: "+", label: "Years of Experience" },
   { value: 15, suffix: "+", label: "Completed Projects" },
   { value: 10, suffix: "+", label: "Games & Interactive Experiences" },
-  { value: 15, suffix: "+", label: "Mastered Technologies" },
+  { value: 8, suffix: "+", label: "Mastered Technologies" },
 ];
 
 const logoIconsList = [
