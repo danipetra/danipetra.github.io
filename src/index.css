@@ -200,6 +200,31 @@ section {
         @apply text-lg md:text-xl lg:text-2xl font-semibold mt-5;
       }
     }
+
+    
+
+    .media {
+      @apply w-full h-full rounded-xl;
+    }
+
+    /* Mobile: show image and hide video*/
+    .mobile-only {
+      @apply block;
+    }
+
+    .desktop-only {
+      @apply hidden;
+    }
+
+    /* do the opposite */
+    @media (min-width: 768px) {
+      .mobile-only {
+        @apply hidden;
+      }
+      .desktop-only {
+        @apply block;
+      }
+    }
   }
 
   .cta-wrapper {

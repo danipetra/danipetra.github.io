@@ -12,42 +12,43 @@ const AppShowcase = () => {
   const vrRef = useRef(null);
   const pintRef = useRef(null);
   
-  //Second row 
+  // Second row 
   const GraphRef = useRef(null);
   const FlappyIaRef = useRef(null);
   const BBRef = useRef(null);
 
   useGSAP(() => {
-  // fade-in generale della sezione
-  gsap.fromTo(sectionRef.current, { opacity: 0 }, { opacity: 1, duration: 1.5 });
+    // fade-in generale della sezione
+    gsap.fromTo(sectionRef.current, { opacity: 0 }, { opacity: 1, duration: 1.5 });
 
-  const cards = [
-    gravityRef.current,
-    vrRef.current,
-    pintRef.current,
-    GraphRef.current,
-    FlappyIaRef.current,
-    BBRef.current
-  ];
+    const cards = [
+      gravityRef.current,
+      vrRef.current,
+      pintRef.current,
+      GraphRef.current,
+      FlappyIaRef.current,
+      BBRef.current
+    ];
 
-  cards.forEach((card, index) => {
-    if (!card) return;
-    gsap.fromTo(
-      card,
-      { y: 50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        delay: 0.3 * (index + 1),
-        scrollTrigger: {
-          trigger: card,
-          start: "top bottom-=100",
-        },
-      }
-    );
-  });
-}, []);
+    cards.forEach((card, index) => {
+      if (!card) return;
+      gsap.fromTo(
+        card,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          delay: 0.3 * (index + 1),
+          scrollTrigger: {
+            trigger: card,
+            start: "top bottom-=100",
+          },
+        }
+      );
+    });
+    
+  }, []);
 
   return (
     <div id="work" ref={sectionRef} className="app-showcase">
@@ -55,7 +56,26 @@ const AppShowcase = () => {
         <div className="showcaselayout">
           <div ref={gravityRef} className="first-project-wrapper">
             <div className="image-wrapper">
-              <img src="/images/gravity-swap.png" alt="Ryde App Interface" />
+              <div className="media-wrapper">
+                {/* Mobile: immagine */}
+                <img
+                  src="/images/projects/gravity-swap.png"
+                  alt="Ryde App Interface"
+                  className="media mobile-only"
+                />
+                {/* Desktop/Tablet: video */}
+                <video
+                  className="media desktop-only"
+                  src="/videos/projects/gravity-swap.mp4"
+                  muted
+                  loop
+                  autoPlay
+                  playsInline
+                  preload="none"
+                  poster="/images/projects/gravity-swap.png"
+                  controls
+                />
+              </div>
             </div>
             <div className="text-content">
               <h2>
@@ -66,16 +86,36 @@ const AppShowcase = () => {
                 Integrated Google Ads SDK for monetization and released on Android.
                 Focused on gameplay balance, UX, and lightweight performance optimization.
               </p>
+              <a href="/downloads/gravity-swap.apk" download
+                className="contact-btn group mt-4"
+              >
+                <div className="inner"><span>Download APK</span></div>
+              </a>
             </div>
           </div>
 
           <div className="project-list-wrapper overflow-hidden">
             <div className="project" ref={vrRef}>
               <div className="image-wrapper">
-                <a href="https://github.com/danipetra/Network-Graph-Visualization-VR" target="_blank"><img
-                  src="/images/vr-vis.png"
-                  alt="Library Management Platform"
-                /></a>
+                  <div className="media-wrapper">
+                    {/* Mobile: immagine */}
+                    <img
+                      src="/images/projects/vr-vis.png"
+                      alt="Library Management Platform"
+                      className="media mobile-only"
+                    />
+                    {/* Desktop/Tablet: video */}
+                    <video
+                      className="media desktop-only"
+                      src="/videos/projects/vr-vis.mp4"
+                      muted
+                      loop
+                      playsInline
+                      preload="none"
+                      poster="/images/projects/vr-vis.png"
+                      controls
+                    />
+                  </div>
               </div>
               <h2>VRVis</h2>
               <p className="text-white-50 md:text-xl">
@@ -89,9 +129,31 @@ const AppShowcase = () => {
                   Graph controls (rotation, resizing, etc.);
               </p>
             </div>
-              <div className="project" ref={pintRef}>
+
+            <div className="project" ref={pintRef}>
               <div className="image-wrapper">
-                <a href="https://github.com/danipetra/Pint-Toss/tree/main/Scripts" target="_blank"><img src="/images/pint-toss.png" alt="YC Directory App" /></a>
+                <a
+                  href="https://github.com/danipetra/Pint-Toss/tree/main/Scripts"
+                  target="_blank"
+                >
+                  <div className="media-wrapper">
+                    {/* Mobile: immagine */}
+                    <img
+                      src="/images/projects/pint-toss.png"
+                      alt="YC Directory App"
+                      className="media mobile-only"
+                    />
+                    {/* Desktop/Tablet: video */}
+                    <video
+                      className="media desktop-only"
+                      src="/videos/projects/pint-toss.mp4"
+                      muted
+                      playsInline
+                      preload="none"
+                      poster="/images/projects/pint-toss.png"
+                    />
+                  </div>
+                </a>
               </div>
               <h2>Pint Toss</h2>
               <p className="text-white-50 md:text-xl">
@@ -99,7 +161,10 @@ const AppShowcase = () => {
                   Platform independent controls, using the new Unity Input System;
                   3D line rendering and game objects trajectory prediction;
               </p>
-              <a href="https://github.com/danipetra/Pint-Toss/tree/main/Scripts" className="contact-btn group mt-4">
+              <a
+                href="https://github.com/danipetra/Pint-Toss/tree/main/Scripts"
+                className="contact-btn group mt-4"
+              >
                 <div className="inner"><span>View repo</span></div>
               </a>
             </div>
@@ -110,7 +175,23 @@ const AppShowcase = () => {
         <div className="showcaselayout xl:flex-row-reverse xl:flex-row-reverse mt-16 xl:mt-24">
           <div ref={BBRef} className="first-project-wrapper">
             <div className="image-wrapper">
-              <img src="/images/block-breaker.png" alt="BB" />
+              <div className="media-wrapper">
+                {/* Mobile: immagine */}
+                <img
+                  src="/images/projects/block-breaker.png"
+                  alt="BB"
+                  className="media mobile-only"
+                />
+                {/* Desktop/Tablet: video */}
+                <video
+                  className="media desktop-only"
+                  src="/videos/projects/block-breaker.mp4"
+                  muted
+                  playsInline
+                  preload="none"
+                  poster="/images/projects/block-breaker.png"
+                />
+              </div>
             </div>
             <div className="text-content">
               <h2>Block Breaker</h2>
@@ -120,17 +201,37 @@ const AppShowcase = () => {
                   -Audio management.
                   -Player Powerups System.
               </p>
-              <a href="https://github.com/danipetra/Portfolio/tree/main/Unity/Block%20Breaker/_Scripts" className="contact-btn group mt-4">
+              <a
+                href="https://github.com/danipetra/Portfolio/tree/main/Unity/Block%20Breaker/_Scripts"
+                className="contact-btn group mt-4"
+              >
                 <div className="inner"><span>View repo</span></div>
               </a>
-              
             </div>
           </div>
 
           <div className="project-list-wrapper overflow-hidden">
             <div className="project" ref={GraphRef}>
               <div className="image-wrapper">
-                <img src="/images/2d-graph-view.png" alt="2D Graph Viewer" />
+                <div className="media-wrapper">
+                  {/* Mobile: immagine */}
+                  <img
+                    src="/images/projects/2d-graph-view.png"
+                    alt="2D Graph Viewer"
+                    className="media mobile-only"
+                  />
+                  {/* Desktop/Tablet: video */}
+                  <video
+                    className="media desktop-only"
+                    src="/videos/projects/2d-graph-view.mp4"
+                    muted
+                    loop
+                    playsInline
+                    preload="none"
+                    poster="/images/projects/2d-graph-view.png"
+                    controls
+                  />
+                </div>
               </div>
               <h2>2D Graph Viewer</h2>
               <p className="text-white-50 md:text-xl">
@@ -144,14 +245,35 @@ const AppShowcase = () => {
 
             <div className="project" ref={FlappyIaRef}>
               <div className="image-wrapper">
-                <img src="/images/flappy-ia.png" alt="Flappy Bird IA" />
+                <div className="media-wrapper">
+                  {/* Mobile: immagine */}
+                  <img
+                    src="/images/projects/flappy-ia.png"
+                    alt="Flappy Bird IA"
+                    className="media mobile-only"
+                  />
+                  {/* Desktop/Tablet: video */}
+                  <video
+                    className="media desktop-only"
+                    src="/videos/projects/flappy-ia.mp4"
+                    muted
+                    playsInline
+                    preload="none"
+                    poster="/images/projects/flappy-ia.png" 
+                    controls
+                  />
+                </div>
               </div>
               <h2>Flappy Bird IA</h2>
               <p className="text-white-50 md:text-xl">
                 I made an AI that plays a flappy bird clone game, using Javascript and the D3 library. 
                 The AI combines agents using neural networks, with a genetic algrithm that creates better agents based on the best ones of each previous iteration.
               </p>
-              <a target="_blank" href="https://github.com/danipetra/Flappy-Bird-IA" className="contact-btn group mt-4">
+              <a
+                target="_blank"
+                href="https://github.com/danipetra/Flappy-Bird-IA"
+                className="contact-btn group mt-4"
+              >
                 <div className="inner"><span>View repo</span></div>
               </a>
             </div>
