@@ -69,7 +69,6 @@ const AppShowcase = () => {
                   src="/videos/projects/gravity-swap.mp4"
                   muted
                   loop
-                  autoPlay
                   playsInline
                   preload="none"
                   poster="/images/projects/gravity-swap.png"
