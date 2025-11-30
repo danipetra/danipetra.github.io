@@ -7,7 +7,7 @@ const SpotifySection = () => {
       <div className="w-full">
         <TitleHeader
           title="Spotify"
-          sub="🎼 What I play and listen to."
+          sub="🎼 What I play and listen to"
         />
 
         <div className="spotify-grid mt-16">
