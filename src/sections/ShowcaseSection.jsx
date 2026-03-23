@@ -7,21 +7,27 @@ gsap.registerPlugin(ScrollTrigger);
 
 const AppShowcase = () => {
   const sectionRef = useRef(null);
-  
+
+  const chairRef = useRef(null);
+  const boxConfigRef = useRef(null);
+  const keyboardRef = useRef(null);
+  // Second row 
   const gravityRef = useRef(null);
   const vrRef = useRef(null);
   const pintRef = useRef(null);
-  
-  // Second row 
+  // Third row
   const GraphRef = useRef(null);
   const FlappyIaRef = useRef(null);
   const BBRef = useRef(null);
 
   useGSAP(() => {
-    // fade-in generale della sezione
+    // general fade in for the whole section
     gsap.fromTo(sectionRef.current, { opacity: 0 }, { opacity: 1, duration: 1.5 });
 
     const cards = [
+      chairRef.current,
+      boxConfigRef.current,
+      keyboardRef.current,
       gravityRef.current,
       vrRef.current,
       pintRef.current,
@@ -53,6 +59,123 @@ const AppShowcase = () => {
   return (
     <div id="work" ref={sectionRef} className="app-showcase">
       <div className="w-full">
+        <div className="showcaselayout xl:flex-row-reverse xl:flex-row-reverse mt-16 xl:mt-24">
+          <div ref={boxConfigRef} className="first-project-wrapper">
+            <div className="image-wrapper">
+              <div className="media-wrapper">
+                {/* Mobile: immagine */}
+                <img
+                  src="/images/projects/box-configurator.png"
+                  alt="Box Configurator"
+                  className="media mobile-only"
+                />
+                {/* Desktop/Tablet: video */}
+                <video
+                  className="media desktop-only"
+                  src="/videos/projects/box-configurator.mp4"
+                  muted
+                  playsInline
+                  preload="none"
+                  poster="/images/projects/box-configurator.png"
+                />
+              </div>
+            </div>
+            <div className="text-content">
+              <h2>Box Configurator</h2>
+              <p className="text-white-50 md:text-xl">
+                Developed a packaging configurator focused on real-time product customization,
+                combining a 3D preview with a 2D dieline-based representation of the box.
+                The project was structured to keep configuration state predictable and scalable,
+                with a template-driven face mapping system designed to support different box formats.
+                Main focus areas included interactive visualization, product configuration UX,
+                clean frontend architecture and extensibility for future packaging templates.
+              </p>
+              <a
+                href="https://github.com/danipetra/box-configurator" target="_blank"
+                className="contact-btn group mt-4"
+              >
+                <div className="inner"><span>View repo</span></div>
+              </a>
+            </div>
+          </div>
+
+          <div className="project-list-wrapper overflow-hidden">
+            <div className="project" ref={chairRef}>
+              <div className="image-wrapper">
+                <div className="media-wrapper">
+                  {/* Mobile: immagine */}
+                  <img
+                    src="/images/projects/chair-configurator.png"
+                    alt="Chair Configurator"
+                    className="media mobile-only"
+                  />
+                  {/* Desktop/Tablet: video */}
+                  <video
+                    className="media desktop-only"
+                    src="/videos/projects/chair-configurator.mp4"
+                    muted
+                    loop
+                    playsInline
+                    preload="none"
+                    poster="/images/projects/chair-configurator.png"
+                    controls
+                  />
+                </div>
+              </div>
+              <h2>Chair Configurator</h2>
+              <p className="text-white-50 md:text-xl">
+                Interactive 3D product configurator built to explore furniture customization in real time.
+                The experience focuses on a clean and immediate user flow, allowing users to preview design
+                variations directly in the viewport while changing visual and structural options.
+                The project was useful to deepen product visualization logic, real-time rendering and
+                frontend component organization for customizable e-commerce experiences.
+              </p>
+              <a target="_blank" href="https://github.com/danipetra/chair-custonization" className="contact-btn group mt-4">
+                <div className="inner"><span>View repo</span></div>
+              </a>
+            </div>
+
+            <div className="project" ref={keyboardRef}>
+              <div className="image-wrapper">
+                <div className="media-wrapper">
+                  {/* Mobile: immagine */}
+                  <img
+                    src="/images/projects/keyboard-configurator.png"
+                    alt="Keyboard Configurator"
+                    className="media mobile-only"
+                  />
+                  {/* Desktop/Tablet: video */}
+                  <video
+                    className="media desktop-only"
+                    src="/videos/projects/keyboard-configurator.mp4"
+                    muted
+                    playsInline
+                    preload="none"
+                    poster="/images/projects/keyboard-configurator.png" 
+                    controls
+                  />
+                </div>
+              </div>
+              <h2>Keyboard Configurator</h2>
+              <p className="text-white-50 md:text-xl">
+                Interactive 3D keyboard configurator built to explore ergonomic and aesthetic customization in real time.
+                The experience focuses on a clean and immediate user flow, allowing users to preview design
+                variations directly in the viewport while changing visual and structural options.
+                The project was useful to deepen product visualization logic, real-time rendering and
+                frontend component organization for customizable e-commerce experiences.
+              </p>
+              <a
+                target="_blank"
+                href="https://github.com/danipetra/3d_shop"
+                className="contact-btn group mt-4"
+              >
+                <div className="inner"><span>View repo</span></div>
+              </a>
+            </div>
+          </div>
+        </div> 
+        
+        {/* ---- Second row ---- */}
         <div className="showcaselayout">
           <div ref={gravityRef} className="first-project-wrapper">
             <div className="image-wrapper">
@@ -170,7 +293,7 @@ const AppShowcase = () => {
           </div>
         </div>
 
-        {/* ---- Specular second row ---- */}
+        {/* ---- Third row ---- */}
         <div className="showcaselayout xl:flex-row-reverse xl:flex-row-reverse mt-16 xl:mt-24">
           <div ref={BBRef} className="first-project-wrapper">
             <div className="image-wrapper">
