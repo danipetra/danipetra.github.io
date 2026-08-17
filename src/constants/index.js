@@ -11,10 +11,6 @@ const navLinks = [
     name: "Skills",
     link: "#skills",
   },
-  // {
-  //   name: "Testimonials",
-  //   link: "#testimonials",
-  // },
 ];
 
 const words = [
@@ -33,60 +29,6 @@ const counterItems = [
   { value: 15, suffix: "+", label: "Completed Projects" },
   { value: 10, suffix: "+", label: "Games & Interactive Experiences" },
   { value: 8, suffix: "+", label: "Mastered Technologies" },
-];
-
-const logoIconsList = [
-  {
-    imgPath: "/images/logos/company-logo-1.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-2.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-3.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-4.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-5.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-6.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-7.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-8.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-9.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-10.png",
-  },
-  {
-    imgPath: "/images/logos/company-logo-11.png",
-  },
-];
-
-const abilities = [
-  {
-    imgPath: "/images/seo.png",
-    title: "Creative Problem-Solving",
-    desc: "Turning complex technical challenges into elegant, interactive experiences through smart architecture and clean code.",
-  },
-  {
-    imgPath: "/images/chat.png",
-    title: "Collaborative Spirit",
-    desc: "Working side-by-side with designers, artists, and backend devs to build something that feels alive and consistent.",
-  },
-  {
-    imgPath: "/images/time.png",
-    title: "Performance & Precision",
-    desc: "Every pixel and frame counts — I focus on optimizing rendering, animation flow, and responsiveness across devices.",
-  },
 ];
 
 const techStackImgs = [
@@ -163,7 +105,7 @@ const techStackIcons = [
 
 const expCards = [
   {
-    review: "Adrian brought creativity and technical expertise to the team, significantly improving our frontend performance. His work has been invaluable in delivering faster experiences.",
+    review: "Daniele brought creativity and technical expertise to the team, significantly improving our frontend performance. His work has been invaluable in delivering faster experiences.",
     imgPath: "/images/exp1.png",
     logoPath: "/images/logo1.png",
     title: "Frontend Engineer",
@@ -176,7 +118,7 @@ const expCards = [
     ],
   },
   {
-    review: "Adrian’s contributions to Docker's web applications have been outstanding. He approaches challenges with a problem-solving mindset.",
+    review: "Daniele’s contributions to Docker's web applications have been outstanding. He approaches challenges with a problem-solving mindset.",
     imgPath: "/images/exp2.png",
     logoPath: "/images/logo2.png",
     title: "Frontend Game Developer",
@@ -189,7 +131,7 @@ const expCards = [
     ],
   },
   {
-    review: "Adrian’s work on Appwrite’s mobile app brought a high level of quality and efficiency. He delivered solutions that enhanced our mobile experience & meet our product goals.",
+    review: "Daniele’s work on Appwrite’s mobile app brought a high level of quality and efficiency. He delivered solutions that enhanced our mobile experience & meet our product goals.",
     imgPath: "/images/exp3.png",
     logoPath: "/images/logo3.png",
     title: "Frontend Developer",
@@ -199,66 +141,6 @@ const expCards = [
       "Designed and implemented an interactive 2D data visualization web app built with Angular, G6 Engine, and JavaScript, enabling real-time exploration of complex datasets.",
       "Coordinated with the product team to implement features based on feedback.",
     ],
-  },
-];
-
-const expLogos = [
-  {
-    name: "logo1",
-    imgPath: "/images/logo1.png",
-  },
-  {
-    name: "logo2",
-    imgPath: "/images/logo2.png",
-  },
-  {
-    name: "logo3",
-    imgPath: "/images/logo3.png",
-  },
-];
-
-const testimonials = [
-  {
-    name: "Esther Howard",
-    mentions: "@estherhoward",
-    review:
-      "I can’t say enough good things about Adrian. He was able to take our complex project requirements and turn them into a seamless, functional website. His problem-solving abilities are outstanding.",
-    imgPath: "/images/client1.png",
-  },
-  {
-    name: "Wade Warren",
-    mentions: "@wadewarren",
-    review:
-      "Working with Adrian was a fantastic experience. He transformed our outdated website into a modern, user-friendly platform. His attention to detail and commitment to quality are unmatched. Highly recommend him for any web dev projects.",
-    imgPath: "/images/client3.png",
-  },
-  {
-    name: "Guy Hawkins",
-    mentions: "@guyhawkins",
-    review:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
-    imgPath: "/images/client2.png",
-  },
-  {
-    name: "Marvin McKinney",
-    mentions: "@marvinmckinney",
-    review:
-      "Adrian was a pleasure to work with. He turned our outdated website into a fresh, intuitive platform that’s both modern and easy to navigate. Fantastic work overall.",
-    imgPath: "/images/client5.png",
-  },
-  {
-    name: "Floyd Miles",
-    mentions: "@floydmiles",
-    review:
-      "Adrian’s expertise in web development is truly impressive. He delivered a robust and scalable solution for our e-commerce site, and our online sales have significantly increased since the launch. He’s a true professional!",
-    imgPath: "/images/client4.png",
-  },
-  {
-    name: "Albert Flores",
-    mentions: "@albertflores",
-    review:
-      "Adrian was a pleasure to work with. He understood our requirements perfectly and delivered a website that exceeded our expectations. His skills in both frontend and backend dev are top-notch.",
-    imgPath: "/images/client6.png",
   },
 ];
 
@@ -290,16 +172,138 @@ const socialImgs = [
   },
 ];
 
+const workFilters = ["All", "Configurators", "Games", "Visualization", "AI"];
+
+const projects = [
+  {
+    title: "Fortune Wheel",
+    description:
+      "Standalone wheel-of-fortune mini-game built for a fullstack take-home challenge, structured as if the spin outcome came from a real backend even though it has none. Weighted-sector logic, async providers with simulated latency and errors, an escalating big-win finale, and a fully responsive layout tuned with CSS container queries.",
+    image: "/images/projects/fortune-wheel.jpg",
+    alt: "Fortune Wheel",
+    category: "Games",
+    tags: ["TypeScript", "PixiJS", "Vite"],
+    repoUrl: "https://github.com/danipetra/fortune-wheel-game",
+  },
+  {
+    title: "Drift",
+    description:
+      "1v1 card game prototype combining positional melee combat with free-target ranged attacks across a two-lane board. Fully data-driven cards and decks, GSAP-animated combat sequences, a branching endless Tower Climb mode, and local persistence for collection, deck building and leaderboards.",
+    image: "/images/projects/drift-card-game.png",
+    alt: "Drift",
+    category: "Games",
+    tags: ["TypeScript", "PixiJS", "GSAP"],
+    repoUrl: "https://github.com/danipetra/Drift",
+  },
+  {
+    title: "Box Configurator",
+    description:
+      "Packaging configurator focused on real-time product customization, combining a 3D preview with a 2D dieline-based representation. Built around a scalable template-driven face mapping system to support multiple box formats and keep state predictable and extensible.",
+    image: "/images/projects/box-configurator.png",
+    video: "/videos/projects/box-configurator.mp4",
+    alt: "Box Configurator",
+    category: "Configurators",
+    tags: ["React", "Three.js", "JavaScript"],
+    repoUrl: "https://github.com/danipetra/box-configurator",
+  },
+  {
+    title: "Chair Configurator",
+    description:
+      "Interactive 3D furniture configurator designed to explore real-time customization through a clean and immediate user flow. Focused on product visualization, rendering logic and frontend organization for configurable e-commerce experiences.",
+    image: "/images/projects/chair-configurator.png",
+    video: "/videos/projects/chair-configurator.mp4",
+    alt: "Chair Configurator",
+    category: "Configurators",
+    tags: ["React", "Three.js", "JavaScript"],
+    repoUrl: "https://github.com/danipetra/chair-custonization",
+  },
+  {
+    title: "Keyboard Configurator",
+    description:
+      "Interactive 3D keyboard configurator centered on ergonomic and aesthetic customization. Built to explore modular product selection, immediate visual feedback and a clearer UX for comparing variants and components.",
+    image: "/images/projects/keyboard-configurator.png",
+    video: "/videos/projects/keyboard-configurator.mp4",
+    alt: "Keyboard Configurator",
+    category: "Configurators",
+    tags: ["React", "Three.js", "JavaScript"],
+    repoUrl: "https://github.com/danipetra/3d_shop",
+  },
+  {
+    title: "Gravity Swap",
+    description:
+      "2D mobile game developed and published with Unity and C#, featuring dynamic gravity mechanics and procedural generation. Includes Google Ads SDK integration, Android release, gameplay balancing and lightweight performance optimization.",
+    image: "/images/projects/gravity-swap.png",
+    video: "/videos/projects/gravity-swap.mp4",
+    alt: "Gravity Swap",
+    category: "Games",
+    tags: ["Unity", "C#", "APK"],
+    downloadUrl: "/downloads/gravity-swap.apk",
+  },
+  {
+    title: "Pint Toss",
+    description:
+      "3D arcade game made in a 3-day challenge for both mobile and PC. Explores platform-independent controls with the new Unity Input System, 3D line rendering and trajectory prediction.",
+    image: "/images/projects/pint-toss.png",
+    video: "/videos/projects/pint-toss.mp4",
+    alt: "Pint Toss",
+    category: "Games",
+    tags: ["Unity", "C#"],
+    repoUrl: "https://github.com/danipetra/Pint-Toss/tree/main/Scripts",
+  },
+  {
+    title: "Block Breaker",
+    description:
+      "One of my first Unity projects, inspired by Arkanoid. Includes scene flow management, audio handling and a player power-up system, useful for strengthening gameplay structure and game state logic.",
+    image: "/images/projects/block-breaker.png",
+    video: "/videos/projects/block-breaker.mp4",
+    alt: "Block Breaker",
+    category: "Games",
+    tags: ["Unity", "C#"],
+    repoUrl:
+      "https://github.com/danipetra/Portfolio/tree/main/Unity/Block%20Breaker/_Scripts",
+  },
+  {
+    title: "VRVis",
+    description:
+      "VR application built for my thesis to visualize network anomalies through force-directed graphs. Combines Unity interaction, anomaly detection and data preprocessing through a custom Python REST API.",
+    image: "/images/projects/vr-vis.png",
+    video: "/videos/projects/vr-vis.mp4",
+    alt: "VRVis",
+    category: "Visualization",
+    tags: ["Unity", "C#", "Python", "Flask", "VR"],
+    repoUrl: "https://github.com/danipetra/Network-Graph-Visualization-VR",
+  },
+  {
+    title: "2D Graph Viewer",
+    description:
+      "2D web visualization tool for network traffic anomalies, developed with G6. Supported by a Python REST API for preprocessing and data retrieval, with MIDAS used for anomaly detection.",
+    image: "/images/projects/2d-graph-view.png",
+    video: "/videos/projects/2d-graph-view.mp4",
+    alt: "2D Graph Viewer",
+    category: "Visualization",
+    tags: ["JavaScript", "Python", "Flask", "G6"],
+  },
+  {
+    title: "Flappy Bird IA",
+    description:
+      "AI experiment for a Flappy Bird clone built in JavaScript and D3. Combines neural-network-driven agents with a genetic algorithm to evolve progressively better solutions across iterations.",
+    image: "/images/projects/flappy-ia.png",
+    video: "/videos/projects/flappy-ia.mp4",
+    alt: "Flappy Bird IA",
+    category: "AI",
+    tags: ["JavaScript", "Neural Networks", "Genetic Algorithm"],
+    repoUrl: "https://github.com/danipetra/Flappy-Bird-IA",
+  },
+];
+
 export {
   words,
-  abilities,
-  logoIconsList,
   counterItems,
   expCards,
-  expLogos,
-  testimonials,
   socialImgs,
   techStackIcons,
   techStackImgs,
   navLinks,
+  workFilters,
+  projects,
 };

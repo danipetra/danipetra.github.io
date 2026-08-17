@@ -1,7 +1,11 @@
-
 import TitleHeader from "../components/TitleHeader";
+import { socialImgs } from "../constants";
 
 const SpotifySection = () => {
+  const spotifyProfileUrl = socialImgs.find(
+    (social) => social.name === "spotify"
+  )?.link;
+
   return (
     <section id="spotify" className="spotify-section">
       <div className="w-full">
@@ -19,7 +23,7 @@ const SpotifySection = () => {
             </p>
 
             <a
-              href="https://open.spotify.com/user/ssmgujjptxdcsvoid540oppzv?si=3de49b8f0e434f8b"
+              href={spotifyProfileUrl}
               target="_blank"
               rel="noreferrer"
               className="contact-btn group inline-flex items-center mt-2"

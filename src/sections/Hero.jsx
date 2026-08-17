@@ -41,7 +41,7 @@ const Hero = () => {
                       >
                         <img
                           src={word.imgPath}
-                          alt="person"
+                          alt=""
                           className="xl:size-12 md:size-10 size-7 md:p-2 p-1 rounded-full bg-white-50"
                         />
                         <span>{word.text}</span>
@@ -63,7 +63,7 @@ const Hero = () => {
             <Button
               text="See My Work"
               className="md:w-80 md:h-16 w-60 h-12"
-              id="counter"
+              targetId="counter"
             />
           </div>
         </header>
