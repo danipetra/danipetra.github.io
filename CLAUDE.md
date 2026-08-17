@@ -8,9 +8,10 @@ Daniele Petracca's personal portfolio site, deployed at `danipetra.github.io` vi
 The codebase started from JavaScript Mastery's ["3D Portfolio" tutorial](https://github.com/adrianhajdin/3d-portfolio)
 (README.md still documents the upstream clone/setup flow) and has since been customized with
 Daniele's own content, projects and copy — it was **not** built from scratch, so expect some
-tutorial-shaped patterns (generic section names, a couple of unused/commented-out sections, a
-fairly monolithic constants file) rather than a from-scratch architecture. Treat inconsistencies
-below as known state to gradually clean up, not as intended design.
+tutorial-shaped patterns (generic section names, a fairly monolithic constants file) rather than a
+from-scratch architecture. A first cleanup pass already removed the tutorial's unused sections and
+fixed several leftover bugs (see git history on this file and the "Known rough edges" section below
+for what's still open).
 
 Stack: **React 19 + Vite 6**, **Tailwind CSS 4** (CSS-first config, no `tailwind.config.js` — see
 `src/index.css`), **Three.js / React Three Fiber / Drei** for the 3D hero and contact scenes,
@@ -39,22 +40,21 @@ VITE_APP_EMAILJS_PUBLIC_KEY=
 
 ## Structure
 
-- **`src/App.jsx`** — assembles the page from sections, top to bottom. `LogoShowcase`,
-  `FeatureCards` and `Testimonials` are currently commented out here even though their content
-  still exists in `constants/index.js` and their component files are intact — decide whether to
-  re-enable or delete them rather than leaving them as silent dead code.
-- **`src/sections/`** — one file per page section (`Hero`, `ShowcaseSection` = the "Work" grid,
-  `Experience`, `TechStack`, `SpotifySection`, `Contact`, `Footer`, plus the three disabled ones
-  above). Each section owns its own GSAP/`ScrollTrigger` entrance animation via `useGSAP`.
+- **`src/App.jsx`** — assembles the page from sections, top to bottom: `Hero`, `ShowcaseSection`,
+  `Experience`, `TechStack`, `SpotifySection`, `Contact`, `Footer`. `LogoShowcase`, `FeatureCards`
+  and `Testimonials` (tutorial leftovers, never populated with real content) were removed entirely,
+  along with their constants data — don't recreate them from git history without real content to
+  put in them.
+- **`src/sections/`** — one file per page section. Each section owns its own GSAP/`ScrollTrigger`
+  entrance animation via `useGSAP`.
 - **`src/components/`** — shared UI (`NavBar`, `Button`, `GlowCard`, `TitleHeader`,
   `AnimatedCounter`, `ExpContent`) plus `components/models/` for R3F scenes/meshes (`hero_models/`,
-  `contact/`, `tech_logos/`).
-- **`src/constants/index.js`** — the single source of truth for almost all site copy and data:
-  nav links, hero words, counters, company logos, abilities, tech stack, experience cards,
-  testimonials, social links. **Exception:** `ShowcaseSection.jsx` defines its own `projects` and
-  `filters` arrays locally instead of importing from here — every other section pulls from
-  `constants/index.js`, so this one file is the odd one out. Worth moving `projects`/`filters` into
-  `constants/index.js` for consistency next time that file is touched.
+  `contact/`, `tech_logos/`). `GlowCard` takes a single `card` prop and holds one internal ref per
+  instance — no `index` prop, don't reintroduce one; each caller renders its own `GlowCard`.
+- **`src/constants/index.js`** — the single source of truth for site copy and data: nav links, hero
+  words, counters, tech stack, experience cards, social links, and the Work grid's `projects`/
+  `workFilters`. Every section sources its content from here — if you add a new section with any
+  amount of repeatable data, put it here too rather than inlining it in the section file.
 - **`src/index.css`** — Tailwind v4 imported directly (`@import "tailwindcss"`), design tokens
   under `@theme` (custom color scale: `white-50`, `black-50/100/200`, `blue-50/100`), and
   component classes grouped by section under `@layer components` (e.g. `.app-showcase { .work-card
@@ -81,6 +81,32 @@ top, which is why they land on page 1 alongside the pre-existing configurator/ga
 two oldest (`2D Graph Viewer`, `Flappy Bird IA`) got pushed to page 2. If more projects are added,
 keep newest-first ordering so pagination continues to surface recent work on page 1 by default.
 
+## Experience section (`Experience.jsx`)
+
+Each timeline entry has an `xl:w-2/6` column on desktop that's currently **intentionally empty** —
+a `GlowCard` showing `card.imgPath` (a company/role image) plus the card's `review` quote is written
+but commented out. This was a deliberate call, not an oversight: leave it commented out unless
+asked to change it again.
+
+## 3D scenes: pause-off-screen + shadow refresh (Hero/Contact)
+
+Both `HeroExperience` and `ContactExperience` (`src/components/models/`) use
+`src/hooks/useInView.js` (`IntersectionObserver`-based) to set `frameloop={inView ? "always" :
+"never"}` on their `<Canvas>` — rendering fully stops while either is scrolled off-screen, which is
+what fixed a serious lag complaint (both scenes previously rendered continuously forever,
+postprocessing/shadows included, regardless of visibility). Both also cap `dpr={[1, 1.5]}`. Don't
+remove this without a specific reason — it's load-bearing for perceived performance.
+
+`ContactExperience`'s desk scene never animates, so its shadow map doesn't need to recompute every
+frame either. `Computer.jsx` takes a `refreshShadow` prop (`ContactExperience` passes its `inView`
+state) and, each time it flips to `true`, sets `gl.shadowMap.autoUpdate = false` +
+`gl.shadowMap.needsUpdate = true` + calls `invalidate()` to force one fresh render. This
+recomputes-on-every-return-to-view instead of recomputing only once ever on mount, specifically
+because the first version (compute-once-forever) was suspected to cause an intermittent "desk model
+renders once then goes blank" bug after the canvas had been paused off-screen — recomputing on each
+visibility return closes that gap. If shadow-related visual bugs ever reappear here, this is the
+first place to look.
+
 ## Deployment
 
 The repo has a `gh-pages` branch on `origin` (`danipetra/danipetra.github.io`), which is what
@@ -94,27 +120,22 @@ builds on push to `master` and publishes `dist/` to `gh-pages`.
 
 ## Known rough edges / improvement candidates
 
-- **Contact form error handling** (`src/sections/Contact.jsx`): a failed `emailjs.sendForm` only
-  `console.error`s — the user sees no failure state, just a button that stops saying "Sending...".
-  Add a visible error message/toast.
-- **Bundle size**: production build currently emits a single ~1.4MB JS chunk (gzip ~458KB), flagged
-  by Vite's chunk-size warning — driven by Three.js/R3F/Drei being in the main bundle even though
-  the 3D hero/contact scenes are below the fold or behind interaction. `React.lazy` + dynamic
-  `import()` for `HeroExperience`/`ContactExperience`/`TechIconCardExperience`, or manual chunking
-  in `vite.config.js`, would be the first thing to try.
-- **Constants file is a growing monolith**: `constants/index.js` mixes nav, copy, and per-section
-  data arrays for every section in one ~300-line file. Fine at current size; if it keeps growing,
-  consider splitting per-section (`constants/experience.js`, `constants/testimonials.js`, etc.) with
-  an `index.js` barrel re-export.
+- **`TechIconCardExperience.jsx`** (a third R3F scene, per-tech-icon 3D models) is unused —
+  `TechStack.jsx` renders static `<img>`s instead (the 3D version is commented out there). It never
+  got the `useInView`/`dpr` treatment the other two scenes did, since it isn't reachable — if it's
+  ever re-enabled, apply the same pattern documented above first.
+- **Constants file will keep growing**: `constants/index.js` mixes nav, copy, and per-section data
+  arrays for every section in one file (~250 lines currently). Fine at this size; if it keeps
+  growing, consider splitting per-section (`constants/experience.js`, `constants/work.js`, etc.)
+  with an `index.js` barrel re-export.
 - **No TypeScript, no prop validation**: plain JSX throughout, no `PropTypes` or `.tsx`. Not
   necessarily worth a full migration, but worth keeping in mind before adding more complex
   components — a bad prop shape currently fails silently or blows up at render time with no
   type-level warning.
-- **Dead/disabled sections**: `LogoShowcase`, `FeatureCards`, `Testimonials` are commented out in
-  `App.jsx` but still fully implemented with live data in `constants/index.js`. Either re-enable
-  them or remove the components + their constants to stop the drift between "what's implemented"
-  and "what's shown."
 - **Heavy media assets**: some project videos in `public/videos/projects/` run several MB each
   (e.g. the VRVis clip is ~11MB) and are only lazy-loaded via `preload="none"`, not viewport-based
   lazy loading — fine for a handful of cards, but reconsider if the work grid keeps growing well
   past pagination page 1.
+- **`NavBar.jsx`'s scroll listener** is unthrottled (`window.addEventListener("scroll", ...)` firing
+  on every scroll event). It's a cheap boolean comparison, so not urgent, but worth throttling if
+  more work gets added to that handler later.
