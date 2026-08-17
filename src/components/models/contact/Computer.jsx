@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 
-export function Computer({ refreshShadow, ...props }) {
+export function Computer({ refreshShadow, recoveryGen, ...props }) {
   const { nodes, materials } = useGLTF(
     "/models/computer-optimized-transformed.glb"
   );
@@ -14,12 +14,15 @@ export function Computer({ refreshShadow, ...props }) {
   // visible again (rather than once forever) means a shadow that got invalidated while
   // the canvas was paused off-screen always gets a fresh, correct recompute on return,
   // instead of staying stuck on whatever last happened to be in the GPU buffer.
+  // `recoveryGen` (bumped after a WebGL context restore, see useWebGLRecovery.js) is
+  // in the dependency list for the same reason: a restored context needs the shadow
+  // map rebuilt too, not just a resumed-from-pause one.
   useEffect(() => {
     if (!refreshShadow) return;
     gl.shadowMap.autoUpdate = false;
     gl.shadowMap.needsUpdate = true;
     invalidate();
-  }, [refreshShadow, gl, invalidate]);
+  }, [refreshShadow, recoveryGen, gl, invalidate]);
 
   return (
     <group {...props} dispose={null}>

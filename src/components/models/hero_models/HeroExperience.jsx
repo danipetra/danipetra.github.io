@@ -5,13 +5,28 @@ import { useMediaQuery } from "react-responsive";
 import { Room } from "./Room";
 import HeroLights from "./HeroLights";
 import Particles from "./Particles";
-import { Suspense } from "react";
+import { Suspense, useCallback, useState } from "react";
 import { useInView } from "../../../hooks/useInView";
+import {
+  useWebGLRecovery,
+  useResizeRecovery,
+  useForceInvalidate,
+} from "../../../hooks/useWebGLRecovery";
+
+// Forces a fresh frame after a WebGL context restore - see useWebGLRecovery.js.
+const RecoverySync = ({ gen }) => {
+  useForceInvalidate(gen);
+  return null;
+};
 
 const HeroExperience = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const isTablet = useMediaQuery({ query: "(max-width: 1024px)" });
   const [canvasRef, inView] = useInView();
+  const [recoveryGen, setRecoveryGen] = useState(0);
+  const bumpRecovery = useCallback(() => setRecoveryGen((g) => g + 1), []);
+  useWebGLRecovery(canvasRef, bumpRecovery);
+  useResizeRecovery(canvasRef, bumpRecovery);
 
   return (
     <Canvas
@@ -20,6 +35,7 @@ const HeroExperience = () => {
       dpr={[1, 1.5]}
       frameloop={inView ? "always" : "never"}
     >
+      <RecoverySync gen={recoveryGen} />
       {/* deep blue ambient */}
       <ambientLight intensity={0.2} color="#1a1a40" />
       {/* Configure OrbitControls to disable panning and control zoom based on device type */}

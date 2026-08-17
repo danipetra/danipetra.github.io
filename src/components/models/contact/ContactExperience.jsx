@@ -1,11 +1,33 @@
+import { useCallback, useState } from "react";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
 import Computer from "./Computer";
 import { useInView } from "../../../hooks/useInView";
+import {
+  useWebGLRecovery,
+  useResizeRecovery,
+} from "../../../hooks/useWebGLRecovery";
 
+// FIXME: intermittently, the desk model renders once (with its orange background)
+// and then goes solid white with a broken-image-style icon in the corner - reported
+// to happen more often right after a page reload while already scrolled to #contact,
+// and possibly correlated with the DevTools inspector being open / the window being
+// resized narrower. useWebGLRecovery + useResizeRecovery below were added as the most
+// plausible fix (WebGL context loss is a known trigger for exactly this symptom, and
+// is common on laptops with hybrid/switchable graphics), and are confirmed to recover
+// correctly from an actual forced context loss/restore cycle - but the original bug
+// could not be reproduced on demand (slow/fast scroll, reload-while-in-section, rapid
+// multi-step resize down to mobile width, all tested in headless Chromium without
+// triggering it), so treat this as mitigated, not confirmed fixed. If it recurs, check
+// whether `webglcontextlost` actually fires when it happens (that would confirm/rule
+// out this theory) before investigating further.
 const ContactExperience = () => {
   const [canvasRef, inView] = useInView();
+  const [recoveryGen, setRecoveryGen] = useState(0);
+  const bumpRecovery = useCallback(() => setRecoveryGen((g) => g + 1), []);
+  useWebGLRecovery(canvasRef, bumpRecovery);
+  useResizeRecovery(canvasRef, bumpRecovery);
 
   return (
     <Canvas
@@ -44,7 +66,7 @@ const ContactExperience = () => {
       </group>
 
       <group scale={0.03} position={[0, -1.49, -2]} castShadow>
-        <Computer refreshShadow={inView} />
+        <Computer refreshShadow={inView} recoveryGen={recoveryGen} />
       </group>
     </Canvas>
   );
