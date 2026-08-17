@@ -41,8 +41,8 @@ const techStackImgs = [
     imgPath: "/images/logos/react.png",
   },
   {
-    name: "Vue",
-    imgPath: "/images/logos/vuejs.png",
+    name: "Angular",
+    imgPath: "/images/logos/angular.svg",
   },
   {
     name: "Pixi.js",
@@ -67,6 +67,10 @@ const techStackImgs = [
   {
     name: "Git & GitHub",
     imgPath: "/images/logos/git.svg",
+  },
+  {
+    name: "GSAP",
+    imgPath: "/images/logos/gsap.svg",
   },
 ];
 
