@@ -2,10 +2,19 @@ import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
 import Computer from "./Computer";
+import { useInView } from "../../../hooks/useInView";
 
 const ContactExperience = () => {
+  const [canvasRef, inView] = useInView();
+
   return (
-    <Canvas shadows camera={{ position: [0, 3, 7], fov: 45 }}>
+    <Canvas
+      ref={canvasRef}
+      shadows
+      camera={{ position: [0, 3, 7], fov: 45 }}
+      dpr={[1, 1.5]}
+      frameloop={inView ? "always" : "never"}
+    >
       <ambientLight intensity={0.5} color="#fff4e6" />
 
       <directionalLight position={[5, 5, 3]} intensity={2.5} color="#ffd9b3" />

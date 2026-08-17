@@ -6,13 +6,20 @@ import { Room } from "./Room";
 import HeroLights from "./HeroLights";
 import Particles from "./Particles";
 import { Suspense } from "react";
+import { useInView } from "../../../hooks/useInView";
 
 const HeroExperience = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const isTablet = useMediaQuery({ query: "(max-width: 1024px)" });
+  const [canvasRef, inView] = useInView();
 
   return (
-    <Canvas camera={{ position: [0, 0, 15], fov: 45 }}>
+    <Canvas
+      ref={canvasRef}
+      camera={{ position: [0, 0, 15], fov: 45 }}
+      dpr={[1, 1.5]}
+      frameloop={inView ? "always" : "never"}
+    >
       {/* deep blue ambient */}
       <ambientLight intensity={0.2} color="#1a1a40" />
       {/* Configure OrbitControls to disable panning and control zoom based on device type */}

@@ -1,4 +1,8 @@
 import * as THREE from "three";
+import { RectAreaLightUniformsLib } from "three/examples/jsm/lights/RectAreaLightUniformsLib.js";
+
+// Required once for RectAreaLight to render at all — without it the light below is a no-op.
+RectAreaLightUniformsLib.init();
 
 const HeroLights = () => (
   <>
