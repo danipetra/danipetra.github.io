@@ -10,6 +10,7 @@ const ContactExperience = lazy(
 const Contact = () => {
   const formRef = useRef(null);
   const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState("idle"); // "idle" | "success" | "error"
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -23,7 +24,8 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Show loading state
+    setLoading(true);
+    setStatus("idle");
 
     try {
       await emailjs.sendForm(
@@ -33,10 +35,11 @@ const Contact = () => {
         import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
       );
 
-      // Reset form and stop loading
       setForm({ name: "", email: "", message: "" });
+      setStatus("success");
     } catch (error) {
-      console.error("EmailJS Error:", error); // Optional: show toast
+      console.error("EmailJS Error:", error);
+      setStatus("error");
     } finally {
       setLoading(false); // Always stop loading, even on error
     }
@@ -107,6 +110,19 @@ const Contact = () => {
                     </div>
                   </div>
                 </button>
+
+                {status === "success" && (
+                  <p className="text-emerald-400 text-sm text-center">
+                    Message sent — I'll get back to you soon!
+                  </p>
+                )}
+
+                {status === "error" && (
+                  <p className="text-red-400 text-sm text-center">
+                    Something went wrong sending your message. Please try
+                    again, or reach out directly via the links in the footer.
+                  </p>
+                )}
               </form>
             </div>
           </div>
