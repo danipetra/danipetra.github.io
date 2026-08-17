@@ -36,10 +36,12 @@ const Experience = () => {
       });
     });
 
-    // Animate the timeline height as the user scrolls
-    // from the top of the timeline to 70% down the screen
-    // The timeline height should scale down from 1 to 0
-    // as the user scrolls up the screen
+    // The timeline's black mask shrinks (revealing the colored gradient line
+    // underneath) as the user scrolls down through the experience section.
+    // Track the highest progress reached so far and only ever reveal further,
+    // never re-cover: without this, scrolling back up re-grows the mask and
+    // makes the already-revealed line disappear again.
+    let maxTimelineProgress = 0;
     gsap.to(".timeline", {
       // Set the origin of the animation to the bottom of the timeline
       transformOrigin: "bottom bottom",
@@ -53,10 +55,9 @@ const Experience = () => {
         end: "70% center",
         // Update the animation as the user scrolls
         onUpdate: (self) => {
-          // Scale the timeline height as the user scrolls
-          // from 1 to 0 as the user scrolls up the screen
+          maxTimelineProgress = Math.max(maxTimelineProgress, self.progress);
           gsap.to(".timeline", {
-            scaleY: 1 - self.progress,
+            scaleY: 1 - maxTimelineProgress,
           });
         },
       },
