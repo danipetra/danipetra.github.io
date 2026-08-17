@@ -2,18 +2,24 @@ import { useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 
-export function Computer(props) {
+export function Computer({ refreshShadow, ...props }) {
   const { nodes, materials } = useGLTF(
     "/models/computer-optimized-transformed.glb"
   );
   const gl = useThree((state) => state.gl);
+  const invalidate = useThree((state) => state.invalidate);
 
-  // The scene never animates, so the shadow map only needs to be computed once —
-  // otherwise it's recalculated every frame for an identical result.
+  // The scene never animates, so the shadow map doesn't need to be recomputed every
+  // frame — only once per visible session. Re-running this whenever the scene becomes
+  // visible again (rather than once forever) means a shadow that got invalidated while
+  // the canvas was paused off-screen always gets a fresh, correct recompute on return,
+  // instead of staying stuck on whatever last happened to be in the GPU buffer.
   useEffect(() => {
-    gl.shadowMap.needsUpdate = true;
+    if (!refreshShadow) return;
     gl.shadowMap.autoUpdate = false;
-  }, [gl, nodes]);
+    gl.shadowMap.needsUpdate = true;
+    invalidate();
+  }, [refreshShadow, gl, invalidate]);
 
   return (
     <group {...props} dispose={null}>
