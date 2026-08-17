@@ -7,8 +7,29 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(ScrollTrigger);
 
 const filters = ["All", "Configurators", "Games", "Visualization", "AI"];
+const PROJECTS_PER_PAGE = 9;
 
 const projects = [
+  {
+    title: "Fortune Wheel",
+    description:
+      "Standalone wheel-of-fortune mini-game built for a fullstack take-home challenge, structured as if the spin outcome came from a real backend even though it has none. Weighted-sector logic, async providers with simulated latency and errors, an escalating big-win finale, and a fully responsive layout tuned with CSS container queries.",
+    image: "/images/projects/fortune-wheel.jpg",
+    alt: "Fortune Wheel",
+    category: "Games",
+    tags: ["TypeScript", "PixiJS", "Vite"],
+    repoUrl: "https://github.com/danipetra/fortune-wheel-game",
+  },
+  {
+    title: "Drift",
+    description:
+      "1v1 card game prototype combining positional melee combat with free-target ranged attacks across a two-lane board. Fully data-driven cards and decks, GSAP-animated combat sequences, a branching endless Tower Climb mode, and local persistence for collection, deck building and leaderboards.",
+    image: "/images/projects/drift-card-game.png",
+    alt: "Drift",
+    category: "Games",
+    tags: ["TypeScript", "PixiJS", "GSAP"],
+    repoUrl: "https://github.com/danipetra/Drift",
+  },
   {
     title: "Box Configurator",
     description:
@@ -113,11 +134,35 @@ const projects = [
 const AppShowcase = () => {
   const sectionRef = useRef(null);
   const [activeFilter, setActiveFilter] = useState("All");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === "All") return projects;
     return projects.filter((project) => project.category === activeFilter);
   }, [activeFilter]);
+
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredProjects.length / PROJECTS_PER_PAGE)
+  );
+
+  const paginatedProjects = useMemo(() => {
+    const start = (currentPage - 1) * PROJECTS_PER_PAGE;
+    return filteredProjects.slice(start, start + PROJECTS_PER_PAGE);
+  }, [filteredProjects, currentPage]);
+
+  const handleFilterChange = (filter) => {
+    setActiveFilter(filter);
+    setCurrentPage(1);
+  };
+
+  const goToPage = (page) => {
+    if (page < 1 || page > totalPages || page === currentPage) return;
+    setCurrentPage(page);
+    sectionRef.current
+      ?.querySelector(".work-grid")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   useGSAP(() => {
     gsap.fromTo(
@@ -155,7 +200,7 @@ const AppShowcase = () => {
       },
       once: true,
     });
-  }, [activeFilter]);
+  }, [activeFilter, currentPage]);
 
   return (
     <section id="work" ref={sectionRef} className="app-showcase">
@@ -175,7 +220,7 @@ const AppShowcase = () => {
                 className={`work-filter-pill ${
                   activeFilter === filter ? "is-active" : ""
                 }`}
-                onClick={() => setActiveFilter(filter)}
+                onClick={() => handleFilterChange(filter)}
               >
                 {filter}
               </button>
@@ -184,7 +229,7 @@ const AppShowcase = () => {
         </div>
 
         <div className="work-grid">
-          {filteredProjects.map((project) => (
+          {paginatedProjects.map((project) => (
             <article key={project.title} className="work-card">
               <div className="work-card-media">
                 <div className="media-wrapper">
@@ -268,6 +313,46 @@ const AppShowcase = () => {
             </article>
           ))}
         </div>
+
+        {totalPages > 1 && (
+          <div className="work-pagination">
+            <button
+              type="button"
+              className="work-page-btn"
+              disabled={currentPage === 1}
+              onClick={() => goToPage(currentPage - 1)}
+              aria-label="Previous page"
+            >
+              &lt;
+            </button>
+
+            {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+              (page) => (
+                <button
+                  key={page}
+                  type="button"
+                  className={`work-page-btn ${
+                    currentPage === page ? "is-active" : ""
+                  }`}
+                  onClick={() => goToPage(page)}
+                  aria-current={currentPage === page ? "page" : undefined}
+                >
+                  {page}
+                </button>
+              )
+            )}
+
+            <button
+              type="button"
+              className="work-page-btn"
+              disabled={currentPage === totalPages}
+              onClick={() => goToPage(currentPage + 1)}
+              aria-label="Next page"
+            >
+              &gt;
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

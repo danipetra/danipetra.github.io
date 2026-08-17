@@ -260,6 +260,20 @@ section {
       @apply inline-flex items-center px-4 py-2 rounded-full border border-white/10 text-sm text-white/80;
       @apply transition-all duration-300 hover:bg-white/5 hover:text-white;
     }
+
+    .work-pagination {
+      @apply flex flex-wrap items-center justify-center gap-3 mt-12;
+    }
+
+    .work-page-btn {
+      @apply size-10 flex items-center justify-center rounded-lg bg-black-100 border border-white/10 text-white-50 text-sm transition-all duration-300;
+      @apply hover:bg-black-50 hover:text-white;
+      @apply disabled:opacity-30 disabled:pointer-events-none;
+    }
+
+    .work-page-btn.is-active {
+      @apply bg-white text-black border-white;
+    }
   }
 
   .cta-wrapper {
