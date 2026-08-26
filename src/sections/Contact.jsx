@@ -3,8 +3,8 @@ import emailjs from "@emailjs/browser";
 
 import TitleHeader from "../components/TitleHeader";
 
-const ContactExperience = lazy(
-  () => import("../components/models/contact/ContactExperience")
+const HelixExperience = lazy(
+  () => import("../components/models/contact/HelixExperience")
 );
 
 const Contact = () => {
@@ -127,9 +127,9 @@ const Contact = () => {
             </div>
           </div>
           <div className="xl:col-span-7 min-h-96">
-            <div className="bg-[#cd7c2e] w-full h-full hover:cursor-grab rounded-3xl overflow-hidden">
+            <div className="w-full h-full hover:cursor-grab rounded-3xl overflow-hidden">
               <Suspense fallback={null}>
-                <ContactExperience />
+                <HelixExperience />
               </Suspense>
             </div>
           </div>
