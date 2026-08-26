@@ -48,9 +48,11 @@ VITE_APP_EMAILJS_PUBLIC_KEY=
 - **`src/sections/`** — one file per page section. Each section owns its own GSAP/`ScrollTrigger`
   entrance animation via `useGSAP`.
 - **`src/components/`** — shared UI (`NavBar`, `Button`, `GlowCard`, `TitleHeader`,
-  `AnimatedCounter`, `ExpContent`) plus `components/models/` for R3F scenes/meshes (`hero_models/`,
-  `contact/`, `tech_logos/`). `GlowCard` takes a single `card` prop and holds one internal ref per
-  instance — no `index` prop, don't reintroduce one; each caller renders its own `GlowCard`.
+  `AnimatedCounter`, `ExpContent`) plus `components/models/` for 3D scenes/meshes (`hero_models/`,
+  `tech_logos/` are R3F; `contact/` is R3F for its shell but `contact/helix/` is a native Three.js
+  game — see the Contact section below). `GlowCard` takes a single `card` prop and holds one
+  internal ref per instance — no `index` prop, don't reintroduce one; each caller renders its own
+  `GlowCard`.
 - **`src/constants/index.js`** — the single source of truth for site copy and data: nav links, hero
   words, counters, tech stack, experience cards, social links, and the Work grid's `projects`/
   `workFilters`. Every section sources its content from here — if you add a new section with any
@@ -88,24 +90,55 @@ a `GlowCard` showing `card.imgPath` (a company/role image) plus the card's `revi
 but commented out. This was a deliberate call, not an oversight: leave it commented out unless
 asked to change it again.
 
-## 3D scenes: pause-off-screen + shadow refresh (Hero/Contact)
+## 3D scenes: pause-off-screen (Hero)
 
-Both `HeroExperience` and `ContactExperience` (`src/components/models/`) use
-`src/hooks/useInView.js` (`IntersectionObserver`-based) to set `frameloop={inView ? "always" :
-"never"}` on their `<Canvas>` — rendering fully stops while either is scrolled off-screen, which is
-what fixed a serious lag complaint (both scenes previously rendered continuously forever,
-postprocessing/shadows included, regardless of visibility). Both also cap `dpr={[1, 1.5]}`. Don't
-remove this without a specific reason — it's load-bearing for perceived performance.
+`HeroExperience` (`src/components/models/hero_models/`) uses `src/hooks/useInView.js`
+(`IntersectionObserver`-based) to set `frameloop={inView ? "always" : "never"}` on its `<Canvas>` —
+rendering fully stops while it's scrolled off-screen, which is what fixed a serious lag complaint
+(the scene previously rendered continuously forever, regardless of visibility). Also caps `dpr={[1,
+1.5]}`. Don't remove this without a specific reason — it's load-bearing for perceived performance.
+`src/hooks/useWebGLRecovery.js` (`useWebGLRecovery`/`useResizeRecovery`/`useForceInvalidate`) gives
+R3F scenes the same WebGL-context-loss/stuck-resize recovery described below for Contact — pass it
+a canvas ref and bump a "recovery generation" state on restore, then call `useForceInvalidate(gen)`
+inside the `<Canvas>` to force one fresh frame.
 
-`ContactExperience`'s desk scene never animates, so its shadow map doesn't need to recompute every
-frame either. `Computer.jsx` takes a `refreshShadow` prop (`ContactExperience` passes its `inView`
-state) and, each time it flips to `true`, sets `gl.shadowMap.autoUpdate = false` +
-`gl.shadowMap.needsUpdate = true` + calls `invalidate()` to force one fresh render. This
-recomputes-on-every-return-to-view instead of recomputing only once ever on mount, specifically
-because the first version (compute-once-forever) was suspected to cause an intermittent "desk model
-renders once then goes blank" bug after the canvas had been paused off-screen — recomputing on each
-visibility return closes that gap. If shadow-related visual bugs ever reappear here, this is the
-first place to look.
+## Contact section: Helix Jump game (`HelixExperience.jsx`)
+
+The desk model that used to sit in `#contact` was replaced with a playable Helix Jump clone (ported
+from a separate personal `helix` repo, originally vanilla TypeScript). It lives in
+`src/components/models/contact/helix/` (`gameOptions.js` config/palette, `ball.js`, `platform.js`,
+`engine.js`) with `HelixExperience.jsx` as a thin React mount point — **deliberately native
+Three.js, not React Three Fiber**, unlike every other 3D scene in this codebase. The game loop is a
+single imperative `requestAnimationFrame` tick doing physics, collision, and platform
+recycling/pooling with early returns for the game-over state; forcing that into R3F's
+declarative/reconciler model would mean fighting the framework for no benefit. Don't port it to R3F
+without a concrete reason.
+
+Because it's not a `<Canvas>`, it doesn't use `useInView`/`useWebGLRecovery` — those hooks are built
+around an R3F canvas ref and the on-demand `frameloop` prop. `engine.js` implements the equivalent
+protections directly: a `ResizeObserver` sized to its container (not `window`), an
+`IntersectionObserver` that stops the render loop off-screen, `dpr` capped at 1.5 (matches Hero),
+and a `webglcontextlost` listener that opts into the browser's automatic restore (no manual
+invalidate needed afterward, since — unlike R3F's on-demand frameloop — this loop keeps rendering
+unconditionally every frame while visible). `createHelixGame(container, scoreElement)` returns a
+`dispose()` that must fully tear down (cancel rAF, disconnect observers, remove listeners, kill
+in-flight GSAP tweens, dispose every geometry/material) — React 19 `StrictMode` double-invokes
+effects in dev, so a partial teardown shows up immediately as a second live game loop.
+
+Platform materials/geometries are pooled (`platformMaterials`, `gapMaterial`, `spikeGeometry`,
+`spikeMaterial` in `platform.js`) since color/dimensions never change at runtime — `Platform`s are
+created continuously as the game progresses, so allocating fresh instances per platform would be
+wasteful. `fadeAndRemove` clones a mesh's material before whitening it (shared instances would
+otherwise flash every platform of that color, and every spike in the game, white at once), and
+disposes that clone plus the platform's own cylinder/gap geometry on removal — the shared spike
+geometry/material are never disposed, since other live (and future) platforms still reference them.
+Skipping this disposal was an actual memory leak caught during development: platforms in this
+endless runner are created forever, so never freeing their GPU resources on removal would leak
+without bound over a long play session.
+
+`Contact.jsx` lazy-loads it (`React.lazy` + `Suspense`, same pattern as `HeroExperience`) so the
+game's code (plus its `gsap`/`three` usage, though those libraries are already loaded for Hero) sits
+in its own chunk instead of the main bundle.
 
 ## Deployment
 
