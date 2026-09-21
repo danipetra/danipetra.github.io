@@ -180,6 +180,16 @@ const workFilters = ["All", "Configurators", "Games", "Visualization", "AI"];
 
 const projects = [
   {
+    title: "Website Audit Analyzer",
+    description:
+      "Full-stack site-auditing tool that crawls a public site's homepage plus up to 4 internal pages, scoring each on SEO, performance and asset weight through a Next.js dashboard backed by an Express API. Every scoring rule — severity tiers, CTA quality heuristics, load-time breakdowns — is a defensible, independent decision, and the crawler stays dependency-light with cheerio instead of a headless browser.",
+    image: "/images/projects/website-audit-analyzer.png",
+    alt: "Website Audit Analyzer",
+    category: "Visualization",
+    tags: ["Next.js", "TypeScript", "Express"],
+    repoUrl: "https://github.com/danipetra/website-audit-analyzer",
+  },
+  {
     title: "Fortune Wheel",
     description:
       "Standalone wheel-of-fortune mini-game built for a fullstack take-home challenge, structured as if the spin outcome came from a real backend even though it has none. Weighted-sector logic, async providers with simulated latency and errors, an escalating big-win finale, and a fully responsive layout tuned with CSS container queries.",
